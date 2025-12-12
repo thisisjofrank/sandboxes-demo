@@ -9,14 +9,14 @@
     "vite:build": "deno run -A --node-modules-dir npm:vite build"
   },
   "imports": {
-    "@std/dotenv": "jsr:@std/dotenv@^0.224.0",
-    "@types/react": "npm:@types/react@^18.3.3",
+    "@std/dotenv": "jsr:@std/dotenv@^0.224.2",
+    "@types/react": "npm:@types/react@^18.3.27",
     "prismjs": "npm:prismjs@1.29.0",
     "react": "npm:react@^18.3.1",
     "react-dom": "npm:react-dom@^18.3.1",
-    "react-router-dom": "npm:react-router-dom@^6.23.1",
-    "vite": "npm:vite@^5.2.11",
-    "vitejs/plugin-react": "npm:@vitejs/plugin-react@^4.3.0"
+    "react-router-dom": "npm:react-router-dom@^6.30.2",
+    "vite": "npm:vite@^5.4.21",
+    "vitejs/plugin-react": "npm:@vitejs/plugin-react@^4.7.0"
   },
   "compilerOptions": {
     "types": ["react", "react-dom", "@types/react"],
