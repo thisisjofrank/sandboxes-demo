@@ -4,11 +4,13 @@
     "serve": "deno task vite:build && deno task server:start",
     "build": "deno task vite:build",
 
-    "server:start": "deno run -A --node-modules-dir --watch ./server/main.ts",
-    "vite:start": "deno run -A --node-modules-dir npm:vite",
-    "vite:build": "deno run -A --node-modules-dir npm:vite build"
+    "server:start": "deno run -A --node-modules-dir --env-file --watch ./server/main.ts",
+    "sandbox:start": "deno run -A --node-modules-dir --env-file --watch sandbox.ts",
+    "vite:start": "deno run -A --node-modules-dir --env-file npm:vite",
+    "vite:build": "deno run -A --node-modules-dir --env-file npm:vite build"
   },
   "imports": {
+    "@deno/sandbox": "jsr:@deno/sandbox@^0.3.0",
     "@std/dotenv": "jsr:@std/dotenv@^0.224.2",
     "@types/react": "npm:@types/react@^18.3.27",
     "prismjs": "npm:prismjs@1.29.0",

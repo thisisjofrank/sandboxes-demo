@@ -3,7 +3,6 @@ import { Router } from "jsr:@oak/oak/router";
 import routeStaticFilesFrom from "./util/routeStaticFilesFrom.ts";
 import getSampleCode from "./commands/getSampleCode.ts";
 import deployProject from "./commands/deployProject.ts";
-import getDeployment from "./commands/getDeployment.ts";
 
 export const app = new Application();
 const router = new Router();
@@ -11,7 +10,6 @@ const router = new Router();
 router.get("/api/sample", getSampleCode);
 router.post("/api/project", deployProject);
 router.post("/api/project/:id", deployProject);
-router.get("/api/deployment/:id", getDeployment);
 
 app.use(router.routes());
 app.use(routeStaticFilesFrom([

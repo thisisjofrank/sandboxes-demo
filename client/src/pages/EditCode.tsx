@@ -9,12 +9,12 @@ const client = new ApiClient();
 
 export default function EditCode() {
   const { id } = useParams();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, _setSearchParams] = useSearchParams();
 
   // Editor state
   const [running, setRunning] = useState<string>("Run this code");
-  const [url, setUrl] = useState<string>("");
-  const [status, setStatus] = useState<string>("pending");
+  const [url, setUrl] = useState<string>(searchParams.get("url")!);
+  const [status, setStatus] = useState<string>("success");
   const [code, setCode] = useState<string>("");
 
   // Load default editor contents
@@ -25,36 +25,20 @@ export default function EditCode() {
     })();
   }, []);
 
-  // OPTIONAL:
-  // Pre-load the deployment triggered on redirect from ViewCode
-  // A nice UX touch - grabbing the deploymentId from the URL
-  // so that the user can see the deployment status immediately
-  useEffect(() => {
-    if (!searchParams.has("deployment")) return;
-
-    (async () => {
-      const deploymentId = searchParams.get("deployment")!;
-      const response = await client.waitForDeployment(deploymentId);
-      searchParams.delete("deployment");
-
-      setUrl(response.url);
-      setStatus(response.deployment.status);
-      setSearchParams(searchParams.toString());
-    })();
-  }, []);
-
   // UI Callbacks
   const deployChanges = async () => {
     setRunning("Running code...");
 
     // This will create a new deployment and generate a new URL.
     // The serve isn't ready until the `waitForDeployment` promise resolves.
-    const { deployment } = await client.deployProject(code, id!);
-    const response = await client.waitForDeployment(deployment.id);
+    const { status } = await client.deployProject(code, id!);
 
-    setUrl(response.url);
-    setStatus(response.deployment.status);
+    const updatedTimeStamp = new Date().getTime();
+    const url = searchParams.get("url")!;
+    const newUrl = url + (url.includes("?") ? "&" : "?") + `t=${updatedTimeStamp}`;
 
+    setUrl(newUrl);
+    setStatus(status);
     setRunning("Run this code");
   };
 

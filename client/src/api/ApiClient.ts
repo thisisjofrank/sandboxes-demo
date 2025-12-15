@@ -1,7 +1,7 @@
 import doUntil from "./doUntil.ts";
 
 export default class ApiClient {
-  constructor(private readonly baseUrl: string = "") {}
+  constructor(private readonly baseUrl: string = "") { }
 
   public async getSampleCode(): Promise<string> {
     const response = await fetch(`${this.baseUrl}/api/sample`);
@@ -11,7 +11,7 @@ export default class ApiClient {
   public async deployProject(
     code: string,
     id?: string,
-  ): Promise<ProjectDeployment> {
+  ): Promise<RunningSandbox> {
     const idSuffix = id ? `/${id}` : "";
 
     const response = await fetch(`${this.baseUrl}/api/project${idSuffix}`, {
@@ -24,16 +24,5 @@ export default class ApiClient {
     }
 
     return await response.json();
-  }
-
-  public async getDeployment(id: string): Promise<ProjectDeployment> {
-    const response = await fetch(`${this.baseUrl}/api/deployment/${id}`);
-    return await response.json();
-  }
-
-  public async waitForDeployment(deploymentId: string) {
-    return await doUntil(async () => {
-      return await this.getDeployment(deploymentId);
-    }, (response) => response.deployment.status !== "pending");
   }
 }

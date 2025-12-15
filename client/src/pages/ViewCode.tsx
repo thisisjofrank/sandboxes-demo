@@ -21,7 +21,7 @@ export default function ViewCode() {
     // The omission of a project id here will create a new project
     const responseJson = await client.deployProject(code);
     navigate(
-      `/edit/${responseJson.project.id}?deployment=${responseJson.deployment.id}`,
+      `/edit/${responseJson.id}?url=${encodeURIComponent(responseJson.url!)}`,
     );
   };
 
