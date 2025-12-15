@@ -7,7 +7,7 @@ This is a code sandbox example that uses:
 - Deno - as the backend runtime
 - Oak - as the middleware framework for the API
 - Deno Deploy - to host the code sandbox
-- Deno Subhosting - to host the code _executed using the sandbox_
+- Deno Sandboxes - to host the code _executed using the sandbox_
 
 This is a stack that'll work if you want to build something like _CodePen_,
 _Glitch_, _JSFiddle_, or Edge Functions (Cloudflare, Vercel etc).
@@ -17,11 +17,11 @@ _Glitch_, _JSFiddle_, or Edge Functions (Cloudflare, Vercel etc).
 The homepage of the app displays a snippet of a program using the `Deno.serve`
 API to create a Deno web app. When you click `Create Interactive Sandbox` the
 code you see will be pushed to the backend `API` which will create a
-`Deno Subhosting Instance` and startup the code.
+`Deno Sandboxes environment` and startup the code.
 
 You'll be redirected to an editor page at this point, where you can edit and
 save the code in real-time, each save resulting in a new
-`Deno Subhosting Deployment` with a distinct URL that you can share with others.
+`Deno Sandboxes deployment` with a distinct URL that you can share with others.
 
 A real "code sandbox" experience would likely clean up the last n deployments
 after a certain time period, but this is a simplified example.
@@ -33,7 +33,7 @@ You'll need:
 - Deno installed
 - A Deno Deploy account
 - A Deno Deploy access token
-- A Deno Subhosting Account with an Organization created
+- A Deno Sandboxes workspace (formerly called Subhosting) with an Organization created
 
 Once you have your accounts, you'll need to create a `.env` file in the root of
 the project with the following contents:
