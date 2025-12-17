@@ -29,8 +29,6 @@ export default function EditCode() {
   const deployChanges = async () => {
     setRunning("Running code...");
 
-    // This will create a new deployment and generate a new URL.
-    // The serve isn't ready until the `waitForDeployment` promise resolves.
     const { status } = await client.deployProject(code, id!);
 
     // Force iframe refresh by appending a timestamp to the URL
