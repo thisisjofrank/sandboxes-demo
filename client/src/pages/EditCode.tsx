@@ -33,11 +33,12 @@ export default function EditCode() {
     // The serve isn't ready until the `waitForDeployment` promise resolves.
     const { status } = await client.deployProject(code, id!);
 
-    const updatedTimeStamp = new Date().getTime();
+    // Force iframe refresh by appending a timestamp to the URL
     const url = searchParams.get("url")!;
-    const newUrl = url + (url.includes("?") ? "&" : "?") + `t=${updatedTimeStamp}`;
+    const updatedTimeStamp = new Date().getTime();
+    const urlWithTimestamp = url + (url.includes("?") ? "&" : "?") + `t=${updatedTimeStamp}`;
 
-    setUrl(newUrl);
+    setUrl(urlWithTimestamp);
     setStatus(status);
     setRunning("Run this code");
   };
